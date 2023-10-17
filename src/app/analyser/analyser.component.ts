@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Analysis } from '../analysis/analysis';
+import { AnalysisService } from '../analysis/analysis.service';
 
 @Component({
   selector: 'app-analyser',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./analyser.component.css']
 })
 export class AnalyserComponent {
+
+  lastAnalysis: Analysis;
+  url:string;
+
+  constructor(private analysisService:AnalysisService) {}
+
+  async fetchAnalysis(url:string) {
+    this.lastAnalysis = await this.analysisService.fetchAnalysis(url);
+    console.log(this.lastAnalysis.url + this.lastAnalysis.lastModified);
+    this.url = '';
+  }
+
 
 }

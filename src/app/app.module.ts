@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnalysisReportComponent } from './analysis-report/analysis-report.component';
 import { AnalyserComponent } from './analyser/analyser.component';
 import { AnalysisHistoryComponent } from './analysis-history/analysis-history.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AnalysisHistoryComponent } from './analysis-history/analysis-history.co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
