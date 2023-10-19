@@ -9,6 +9,7 @@ import { AnalysisHistoryComponent } from './analysis-history/analysis-history.co
 import { FormsModule } from '@angular/forms';
 import { NgxsModule } from '@ngxs/store';
 import { AnalysisState } from './analysis/analysis.state';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AnalysisState } from './analysis/analysis.state';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     NgbModule,
     FormsModule,
     NgxsModule.forRoot([AnalysisState])
