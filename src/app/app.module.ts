@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnalysisReportComponent } from './analysis-report/analysis-report.component';
@@ -20,7 +19,6 @@ import { AnalysisState } from './analysis/analysis.state';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     NgbModule,
     FormsModule,
     NgxsModule.forRoot([AnalysisState])
