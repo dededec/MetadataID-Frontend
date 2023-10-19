@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Analysis } from './analysis.model';
+import { AnalysisHistoryEntry } from '../analysis-history/analysis-history-entry.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class AnalysisService {
 
   HOST: string = `http://localhost:8080`;
   analysesHistory: Analysis[];
-  historyLimit:number;
+  historyLimit: number;
 
   constructor() { }
 
@@ -27,12 +28,29 @@ export class AnalysisService {
         console.log(err);
       })
 
-    if(this.historyLimit) {
+    if (this.historyLimit) {
       await this.fetchLatestAnalyses(this.historyLimit);
     }
 
     let analysis = returnData as Analysis;
     return analysis;
+  }
+
+  async fetchAnalysisById(id: number) {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    let returnData = await fetch(this.HOST + '/analisis/' + id, {
+      method: "GET",
+      headers: myHeaders,
+      redirect: 'follow',
+    })
+      .then((res) => res.json())
+      .catch((err) => {
+        console.log(err);
+      })
+
+    return returnData as Analysis;
   }
 
   async fetchLatestAnalyses(historyLimit: number) {
@@ -48,8 +66,8 @@ export class AnalysisService {
       .catch((err) => {
         console.log(err);
       })
-    
+
     this.historyLimit = historyLimit;
-    this.analysesHistory = returnData.map((data) => data as Analysis);
+    this.analysesHistory = returnData.map((data) => data as AnalysisHistoryEntry);
   }
 }
