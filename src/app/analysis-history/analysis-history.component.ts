@@ -16,6 +16,10 @@ export class AnalysisHistoryComponent {
   }
 
   async ngOnInit() {
-    this.latestAnalyses = await this.analysisService.fetchLatestAnalyses(this.analysesLimit);
+    await this.analysisService.fetchLatestAnalyses(this.analysesLimit);
+  }
+
+   getLatestAnalyses() {
+    return this.analysisService.analysesHistory;
   }
 }

@@ -6,7 +6,9 @@ import { Analysis } from './analysis';
 })
 export class AnalysisService {
 
-  HOST:string = `http://localhost:8080`;
+  HOST: string = `http://localhost:8080`;
+  analysesHistory: Analysis[];
+  historyLimit:number;
 
   constructor() { }
 
@@ -24,15 +26,20 @@ export class AnalysisService {
       .catch((err) => {
         console.log(err);
       })
-    
-      return returnData as Analysis;
+
+    if(this.historyLimit) {
+      await this.fetchLatestAnalyses(this.historyLimit);
+    }
+
+    let analysis = returnData as Analysis;
+    return analysis;
   }
 
-  async fetchLatestAnalyses(analysesLimit: number) {
+  async fetchLatestAnalyses(historyLimit: number) {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    let returnData = await fetch(this.HOST + '/analisis?limit=' + analysesLimit, {
+    let returnData = await fetch(this.HOST + '/analisis?limit=' + historyLimit, {
       method: "GET",
       headers: myHeaders,
       redirect: 'follow',
@@ -42,6 +49,7 @@ export class AnalysisService {
         console.log(err);
       })
     
-      return returnData.map((data) => data as Analysis);
+    this.historyLimit = historyLimit;
+    this.analysesHistory = returnData.map((data) => data as Analysis);
   }
 }
