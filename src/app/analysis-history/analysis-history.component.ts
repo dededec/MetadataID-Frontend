@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AnalysisService } from '../analysis/analysis.service';
-import { Analysis } from '../analysis/analysis';
+import { Analysis } from '../analysis/analysis.model';
 
 @Component({
   selector: 'app-analysis-history',
@@ -19,7 +19,7 @@ export class AnalysisHistoryComponent {
     await this.analysisService.fetchLatestAnalyses(this.analysesLimit);
   }
 
-   getLatestAnalyses() {
+  getLatestAnalyses() {
     return this.analysisService.analysesHistory;
   }
 }

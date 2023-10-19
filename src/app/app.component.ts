@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Analysis } from './analysis/analysis.model';
+import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'metadataid-frontend';
+
+  selectedAnalysis:Observable<Analysis>
+
+  constructor(private store:Store) {
+    this.selectedAnalysis = this.store.select(state => state.selectedAnalysis.selectedAnalysis)
+  }
 }

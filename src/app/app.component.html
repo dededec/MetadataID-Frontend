@@ -1,4 +1,5 @@
 <div class="container p-3">
     <app-analysis-history />
-    <app-analyser />
+    <app-analyser/>
+    <app-analysis-report *ngIf="this.selectedAnalysis | async" [analysis]="this.selectedAnalysis | async"/>
 </div>

@@ -4,5 +4,3 @@
         aria-describedby="url-input" [(ngModel)] = "url">
     <button type="button" class="btn btn-primary" (click)="fetchAnalysis(this.url)">Analyse</button>
 </div>
-
-<app-analysis-report *ngIf="this.lastAnalysis" [analysis]="this.lastAnalysis"/>

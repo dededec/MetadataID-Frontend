@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Analysis } from '../analysis/analysis';
+import { Analysis } from '../analysis/analysis.model';
 
 @Component({
   selector: 'app-analysis-report',

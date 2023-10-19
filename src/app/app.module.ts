@@ -8,6 +8,8 @@ import { AnalysisReportComponent } from './analysis-report/analysis-report.compo
 import { AnalyserComponent } from './analyser/analyser.component';
 import { AnalysisHistoryComponent } from './analysis-history/analysis-history.component';
 import { FormsModule } from '@angular/forms';
+import { NgxsModule } from '@ngxs/store';
+import { AnalysisState } from './analysis/analysis.state';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    NgxsModule.forRoot([AnalysisState])
   ],
   providers: [],
   bootstrap: [AppComponent]
