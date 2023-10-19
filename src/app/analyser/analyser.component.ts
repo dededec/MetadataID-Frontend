@@ -16,7 +16,6 @@ export class AnalyserComponent {
 
   async fetchAnalysis(url:string) {
     this.lastAnalysis = await this.analysisService.fetchAnalysis(url);
-    console.log(this.lastAnalysis.url + this.lastAnalysis.lastModified);
     this.url = '';
   }
 

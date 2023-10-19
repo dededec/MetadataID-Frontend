@@ -1,1 +1,27 @@
-<p>analysis-report works!</p>
+<div class="container">
+    <ul class="list-group">
+        <li class="list-group-item" >
+            <p ><strong>Title:</strong> {{analysis.title}}</p>
+        </li>
+        <li class="list-group-item">
+            <p ><strong>Description:</strong> {{analysis.description}}</p>
+        </li>
+        <li class="list-group-item">
+            <p ><strong>URL:</strong> {{analysis.url}}</p>
+        </li>
+        <li class="list-group-item">
+            <p ><strong>Keywords:</strong> {{analysis.keywords}}</p>
+        </li>
+        <li class="list-group-item">
+            <p ><strong>Headings:</strong></p>
+            <ul class="list-unstyled">
+                <li *ngFor="let heading of analysis.headings | keyvalue">
+                    <strong>{{heading.key}}:</strong> {{heading.value}}
+                </li>
+            </ul>
+        </li>
+        <li class="list-group-item"><p ><strong>HTML5:</strong> {{analysis.html5}}</p></li>
+        <li class="list-group-item"><p ><strong>Image count:</strong> {{analysis.images}}</p></li>
+        <li class="list-group-item"><p ><strong>Last Modified:</strong> {{analysis.lastModified}}</p></li>
+    </ul>
+</div>

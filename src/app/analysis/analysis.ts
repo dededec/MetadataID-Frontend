@@ -1,4 +1,5 @@
 export class Analysis {
+    id:number;
     url:string;
     title:string;
     description:string;
