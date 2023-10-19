@@ -25,6 +25,10 @@ export class AnalysisHistoryComponent {
 
   async onEntrySelect(id:number) {
     let analysis = await this.analysisService.fetchAnalysisById(id);
-    this.store.dispatch(new SelectAnalysisAction(analysis))
+    this.store.dispatch(new SelectAnalysisAction(analysis));
+  }
+
+  async onDeleteEntry(id:number) {
+    await this.analysisService.deleteAnalysisById(id);
   }
 }

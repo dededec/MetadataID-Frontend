@@ -5,13 +5,15 @@
                 <th scope="col">#</th>
                 <th scope="col">URL</th>
                 <th scope="col">Last Analysed</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
-            <tr (click)="onEntrySelect(analysis.id)" *ngFor="let analysis of getLatestAnalyses(); index as i;">
-                <th scope="row">{{i+1}}</th>
-                <td>{{analysis.url}}</td>
-                <td>{{analysis.lastModified}}</td>
+            <tr  *ngFor="let analysis of getLatestAnalyses(); index as i;">
+                <th (click)="onEntrySelect(analysis.id)" scope="row">{{i+1}}</th>
+                <td (click)="onEntrySelect(analysis.id)">{{analysis.url}}</td>
+                <td (click)="onEntrySelect(analysis.id)">{{analysis.lastModified}}</td>
+                <td (click)="onDeleteEntry(analysis.id)"><button type="button" class="btn btn-outline-danger">DELETE</button></td>
             </tr>
         </tbody>
     </table>

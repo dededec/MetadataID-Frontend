@@ -37,12 +37,8 @@ export class AnalysisService {
   }
 
   async fetchAnalysisById(id: number) {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
     let returnData = await fetch(this.HOST + '/analisis/' + id, {
       method: "GET",
-      headers: myHeaders,
       redirect: 'follow',
     })
       .then((res) => res.json())
@@ -54,12 +50,8 @@ export class AnalysisService {
   }
 
   async fetchLatestAnalyses(historyLimit: number) {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
     let returnData = await fetch(this.HOST + '/analisis?limit=' + historyLimit, {
       method: "GET",
-      headers: myHeaders,
       redirect: 'follow',
     })
       .then((res) => res.json())
@@ -69,5 +61,21 @@ export class AnalysisService {
 
     this.historyLimit = historyLimit;
     this.analysesHistory = returnData.map((data) => data as AnalysisHistoryEntry);
+  }
+
+  async deleteAnalysisById(id: number) {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    await fetch(this.HOST + '/analisis/' + id, {
+      method: "DELETE",
+      headers: myHeaders,
+      redirect: 'follow',
+    })
+      .catch((err) => {
+        console.log(err);
+      })
+
+    await this.fetchLatestAnalyses(this.historyLimit);
   }
 }
