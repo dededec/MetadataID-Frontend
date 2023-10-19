@@ -64,12 +64,9 @@ export class AnalysisService {
   }
 
   async deleteAnalysisById(id: number) {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
 
     await fetch(this.HOST + '/analisis/' + id, {
       method: "DELETE",
-      headers: myHeaders,
       redirect: 'follow',
     })
       .catch((err) => {
