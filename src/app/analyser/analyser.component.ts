@@ -10,14 +10,18 @@ import { SelectAnalysisAction } from '../analysis/analysis.actions';
   styleUrls: ['./analyser.component.css']
 })
 export class AnalyserComponent {
-
-  lastAnalysis: Analysis;
   url:string;
 
   constructor(private analysisService:AnalysisService, private store:Store) {}
 
   async fetchAnalysis(url:string) {
-    this.store.dispatch(new SelectAnalysisAction(await this.analysisService.fetchAnalysis(url)));
+    let analysis = await this.analysisService.fetchAnalysis(url);
+    if(analysis) {
+      this.store.dispatch(new SelectAnalysisAction(analysis));
+    } else {
+      alert("An error ocurred with your request!");
+    }
+
     this.url = '';
   }
 

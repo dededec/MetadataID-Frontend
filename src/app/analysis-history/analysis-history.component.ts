@@ -30,5 +30,10 @@ export class AnalysisHistoryComponent {
 
   async onDeleteEntry(id:number) {
     await this.analysisService.deleteAnalysisById(id);
+    let selectedAnalysis = this.store.selectSnapshot(state => state.selectedAnalysis.selectedAnalysis);
+    if(selectedAnalysis.id == id) {
+      this.store.dispatch(new SelectAnalysisAction(null));
+    }
+    
   }
 }
