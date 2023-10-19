@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Analysis } from '../analysis/analysis.model';
+import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-analysis-report',
@@ -7,5 +9,9 @@ import { Analysis } from '../analysis/analysis.model';
   styleUrls: ['./analysis-report.component.css']
 })
 export class AnalysisReportComponent {
-  @Input() analysis:Analysis
+  analysis:Observable<Analysis>;
+
+  constructor(private store:Store) {
+    this.analysis = this.store.select(state => state.selectedAnalysis.selectedAnalysis);
+  }
 }

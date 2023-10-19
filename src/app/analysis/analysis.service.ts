@@ -17,23 +17,30 @@ export class AnalysisService {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    let returnData = await fetch(this.HOST + '/analisis', {
+    let analysis = null;
+    await fetch(this.HOST + '/analisis', {
       method: "POST",
       headers: myHeaders,
       redirect: 'follow',
       body: JSON.stringify({ url: url }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          analysis = res.json()
+        } else {
+          throw new Error(res.status + " while fetching Analysis")
+        }
+      })
       .catch((err) => {
         console.log(err);
+        alert(err);
       })
 
     if (this.historyLimit) {
       await this.fetchLatestAnalyses(this.historyLimit);
     }
 
-    let analysis = returnData as Analysis;
-    return analysis;
+    return analysis as Analysis;
   }
 
   async fetchAnalysisById(id: number) {

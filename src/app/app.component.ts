@@ -9,10 +9,4 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  selectedAnalysis:Observable<Analysis>
-
-  constructor(private store:Store) {
-    this.selectedAnalysis = this.store.select(state => state.selectedAnalysis.selectedAnalysis)
-  }
 }
