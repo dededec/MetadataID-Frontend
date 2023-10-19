@@ -3,6 +3,7 @@ import { AnalysisService } from '../analysis/analysis.service';
 import { Store } from '@ngxs/store';
 import { SelectAnalysisAction } from '../analysis/analysis.actions';
 import { AnalysisHistoryEntry } from './analysis-history-entry.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-analysis-history',
@@ -12,7 +13,7 @@ import { AnalysisHistoryEntry } from './analysis-history-entry.model';
 export class AnalysisHistoryComponent {
   analysesLimit: number = 15;
 
-  constructor(private analysisService:AnalysisService, private store:Store) {
+  constructor(private analysisService:AnalysisService, private store:Store, private route:Router) {
   }
 
   async ngOnInit() {
@@ -25,7 +26,8 @@ export class AnalysisHistoryComponent {
 
   async onEntrySelect(id:number) {
     let analysis = await this.analysisService.fetchAnalysisById(id);
-    this.store.dispatch(new SelectAnalysisAction(analysis));
+    this.store.dispatch(new SelectAnalysisAction(analysis)).subscribe(res => {
+      this.route.navigate(['report']);});
   }
 
   async onDeleteEntry(id:number) {

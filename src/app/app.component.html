@@ -1,5 +1,17 @@
-<div class="container p-3">
-    <app-analysis-history />
-    <app-analyser/>
-    <app-analysis-report *ngIf="this.selectedAnalysis | async" [analysis]="this.selectedAnalysis | async"/>
-</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand">Panacea Page Analyser</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+        <li class="nav-item">
+          <a class="nav-link" href="">Analyser</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/history">History</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
