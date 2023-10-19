@@ -7,7 +7,7 @@ import { AnalysisHistoryComponent } from './analysis-history/analysis-history.co
 const routes: Routes = [
   {path: '', component:AnalyserComponent},
   {path: 'report', component:AnalysisReportComponent},
-  {path: 'history', component:AnalysisHistoryComponent}
+  {path: 'history', component:AnalysisHistoryComponent},
 ];
 
 @NgModule({
