@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Analysis } from './analysis.model';
 import { AnalysisHistoryEntry } from '../analysis-history/analysis-history-entry.model';
+import { HeadingData } from '../graph/heading-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { AnalysisHistoryEntry } from '../analysis-history/analysis-history-entry
 export class AnalysisService {
 
   HOST: string = `http://localhost:8080`;
+  headingData: HeadingData;
   analysesHistory: Analysis[];
   historyLimit: number;
 
@@ -39,6 +41,7 @@ export class AnalysisService {
     if (this.historyLimit) {
       await this.fetchLatestAnalyses(this.historyLimit);
     }
+    await this.fetchHeadingData();
 
     return analysis as Analysis;
   }
@@ -81,5 +84,19 @@ export class AnalysisService {
       })
 
     await this.fetchLatestAnalyses(this.historyLimit);
+    await this.fetchHeadingData();
+  }
+
+  async fetchHeadingData() {
+    let returnData = await fetch(this.HOST + '/analisis/headings', {
+      method: "GET",
+      redirect: 'follow',
+    })
+      .then((res) => res.json())
+      .catch((err) => {
+        console.log(err);
+      })
+
+      this.headingData = returnData as HeadingData;
   }
 }
