@@ -10,13 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { NgxsModule } from '@ngxs/store';
 import { AnalysisState } from './analysis/analysis.state';
 import { AppRoutingModule } from './app-routing.module';
+import { GraphComponent } from './graph/graph.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AnalysisReportComponent,
     AnalyserComponent,
-    AnalysisHistoryComponent
+    AnalysisHistoryComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,
